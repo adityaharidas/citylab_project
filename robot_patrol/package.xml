@@ -3,11 +3,14 @@
 <package format="3">
   <name>robot_patrol</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="adityahariofficial@gmail.com">user</maintainer>
+  <description>ROS 2 package for autonomous patrol using a TurtleBot3</description>
+  <maintainer email="adityahariofficial@gmail.com">aditya</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>rclcpp</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
