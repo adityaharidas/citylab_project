@@ -1,0 +1,75 @@
+[0.027s] Invoking command in '/home/user/ros2_ws/src/citylab_project/build/robot_patrol': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/simulations/ros2_sims_ws/install/rclrs_tests:/home/simulations/ros2_sims_ws/install/examples_rclrs_minimal_client_service:/home/simulations/ros2_sims_ws/install/sensor_msgs_py:/home/simulations/ros2_sims_ws/install/examples_rclrs_minimal_pub_sub:/home/simulations/ros2_sims_ws/install/examples_rclrs_message_demo:/home/simulations/ros2_sims_ws/install/rclrs:/home/simulations/ros2_sims_ws/install/rosidl_runtime_rs:/opt/ros/humble _=/usr/bin/env /usr/bin/cmake --build /home/user/ros2_ws/src/citylab_project/build/robot_patrol -- -j8 -l8
+[0.078s] [35m[1mConsolidate compiler generated dependencies of target patrol_node[0m
+[0.101s] [ 50%] [32mBuilding CXX object CMakeFiles/patrol_node.dir/src/patrol.cpp.o[0m
+[0.366s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:93:2:[m[K [01;31m[Kerror: [m[Kunterminated argument list invoking macro "RCLCPP_INFO"
+[0.366s]    93 | }
+[0.366s]       |  [01;31m[K^[m[K
+[2.455s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:65:18:[m[K [01;31m[Kerror: [m[Kexpected '[01m[K}[m[K' at end of input
+[2.455s]    65 |       RCLCPP_INFO[01;31m[K([m[Kthis->get_logger(),
+[2.455s]       |                  [01;31m[K^[m[K
+[2.455s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:8:36:[m[K [01;36m[Knote: [m[Kto match this '[01m[K{[m[K'
+[2.456s]     8 | class Patrol : public rclcpp::Node [01;36m[K{[m[K
+[2.456s]       |                                    [01;36m[K^[m[K
+[2.464s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:[m[K In constructor '[01m[KPatrol::Patrol()[m[K':
+[2.464s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:11:5:[m[K [01;31m[Kerror: [m[K'[01m[Kcmd_vel_pub_[m[K' was not declared in this scope
+[2.464s]    11 |     [01;31m[Kcmd_vel_pub_[m[K =
+[2.464s]       |     [01;31m[K^~~~~~~~~~~~[m[K
+[2.474s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:13:5:[m[K [01;31m[Kerror: [m[K'[01m[Klaser_sub_[m[K' was not declared in this scope
+[2.474s]    13 |     [01;31m[Klaser_sub_[m[K = this->create_subscription<sensor_msgs::msg::LaserScan>(
+[2.474s]       |     [01;31m[K^~~~~~~~~~[m[K
+[2.528s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:16:5:[m[K [01;31m[Kerror: [m[K'[01m[Ktimer_[m[K' was not declared in this scope; did you mean '[01m[Ktimer_t[m[K'?
+[2.528s]    16 |     [01;31m[Ktimer_[m[K = this->create_wall_timer(std::chrono::milliseconds(500),
+[2.528s]       |     [01;31m[K^~~~~~[m[K
+[2.528s]       |     [32m[Ktimer_t[m[K
+[2.545s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:[m[K In member function '[01m[Kvoid Patrol::laser_callback(sensor_msgs::msg::LaserScan_<std::allocator<void> >::SharedPtr)[m[K':
+[2.545s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:22:5:[m[K [01;31m[Kerror: [m[K'[01m[Klaser_ranges_[m[K' was not declared in this scope; did you mean '[01m[Kclose_range[m[K'?
+[2.545s]    22 |     [01;31m[Klaser_ranges_[m[K = msg->ranges;
+[2.545s]       |     [01;31m[K^~~~~~~~~~~~~[m[K
+[2.545s]       |     [32m[Kclose_range[m[K
+[2.552s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:23:5:[m[K [01;31m[Kerror: [m[K'[01m[Kangle_min_[m[K' was not declared in this scope
+[2.552s]    23 |     [01;31m[Kangle_min_[m[K = msg->angle_min;
+[2.552s]       |     [01;31m[K^~~~~~~~~~[m[K
+[2.561s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:24:5:[m[K [01;31m[Kerror: [m[K'[01m[Kangle_increment_[m[K' was not declared in this scope
+[2.562s]    24 |     [01;31m[Kangle_increment_[m[K = msg->angle_increment;
+[2.562s]       |     [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[2.568s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:[m[K In member function '[01m[Kvoid Patrol::patrol()[m[K':
+[2.568s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:28:9:[m[K [01;31m[Kerror: [m[K'[01m[Klaser_ranges_[m[K' was not declared in this scope; did you mean '[01m[Kclose_range[m[K'?
+[2.569s]    28 |     if ([01;31m[Klaser_ranges_[m[K.empty()) {
+[2.569s]       |         [01;31m[K^~~~~~~~~~~~~[m[K
+[2.569s]       |         [32m[Kclose_range[m[K
+[2.576s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:35:20:[m[K [01;31m[Kerror: [m[K'[01m[Klaser_ranges_[m[K' was not declared in this scope; did you mean '[01m[Kclose_range[m[K'?
+[2.576s]    35 |     int num_rays = [01;31m[Klaser_ranges_[m[K.size();
+[2.576s]       |                    [01;31m[K^~~~~~~~~~~~~[m[K
+[2.577s]       |                    [32m[Kclose_range[m[K
+[2.582s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:57:7:[m[K [01;31m[Kerror: [m[K'[01m[Kdirection_[m[K' was not declared in this scope
+[2.582s]    57 |       [01;31m[Kdirection_[m[K = angle_min_ + (safest_dir * angle_increment_);
+[2.583s]       |       [01;31m[K^~~~~~~~~~[m[K
+[2.589s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:57:20:[m[K [01;31m[Kerror: [m[K'[01m[Kangle_min_[m[K' was not declared in this scope
+[2.589s]    57 |       direction_ = [01;31m[Kangle_min_[m[K + (safest_dir * angle_increment_);
+[2.589s]       |                    [01;31m[K^~~~~~~~~~[m[K
+[2.597s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:57:47:[m[K [01;31m[Kerror: [m[K'[01m[Kangle_increment_[m[K' was not declared in this scope
+[2.598s]    57 |       direction_ = angle_min_ + (safest_dir * [01;31m[Kangle_increment_[m[K);
+[2.598s]       |                                               [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[2.604s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:65:7:[m[K [01;31m[Kerror: [m[K'[01m[KRCLCPP_INFO[m[K' was not declared in this scope
+[2.604s]    65 |       [01;31m[KRCLCPP_INFO[m[K(this->get_logger(),
+[2.604s]       |       [01;31m[K^~~~~~~~~~~[m[K
+[2.604s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:65:18:[m[K [01;31m[Kerror: [m[Kexpected '[01m[K}[m[K' at end of input
+[2.604s]    65 |       RCLCPP_INFO[01;31m[K([m[Kthis->get_logger(),
+[2.604s]       |                  [01;31m[K^[m[K
+[2.604s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:46:43:[m[K [01;36m[Knote: [m[Kto match this '[01m[K{[m[K'
+[2.604s]    46 |     if (min_distance < min_safe_distance) [01;36m[K{[m[K
+[2.604s]       |                                           [01;36m[K^[m[K
+[2.604s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:65:18:[m[K [01;31m[Kerror: [m[Kexpected '[01m[K}[m[K' at end of input
+[2.604s]    65 |       RCLCPP_INFO[01;31m[K([m[Kthis->get_logger(),
+[2.605s]       |                  [01;31m[K^[m[K
+[2.605s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:27:17:[m[K [01;36m[Knote: [m[Kto match this '[01m[K{[m[K'
+[2.605s]    27 |   void patrol() [01;36m[K{[m[K
+[2.605s]       |                 [01;36m[K^[m[K
+[2.605s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:[m[K At global scope:
+[2.605s] [01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:65:18:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id at end of input
+[2.605s]    65 |       RCLCPP_INFO[01;31m[K([m[Kthis->get_logger(),
+[2.605s]       |                  [01;31m[K^[m[K
+[5.023s] gmake[2]: *** [CMakeFiles/patrol_node.dir/build.make:76: CMakeFiles/patrol_node.dir/src/patrol.cpp.o] Error 1
+[5.023s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/patrol_node.dir/all] Error 2
+[5.023s] gmake: *** [Makefile:146: all] Error 2
+[5.025s] Invoked command in '/home/user/ros2_ws/src/citylab_project/build/robot_patrol' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/simulations/ros2_sims_ws/install/rclrs_tests:/home/simulations/ros2_sims_ws/install/examples_rclrs_minimal_client_service:/home/simulations/ros2_sims_ws/install/sensor_msgs_py:/home/simulations/ros2_sims_ws/install/examples_rclrs_minimal_pub_sub:/home/simulations/ros2_sims_ws/install/examples_rclrs_message_demo:/home/simulations/ros2_sims_ws/install/rclrs:/home/simulations/ros2_sims_ws/install/rosidl_runtime_rs:/opt/ros/humble _=/usr/bin/env /usr/bin/cmake --build /home/user/ros2_ws/src/citylab_project/build/robot_patrol -- -j8 -l8

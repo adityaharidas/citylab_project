@@ -44,33 +44,36 @@ private:
         *std::min_element(front_ranges.begin(), front_ranges.end());
 
     if (min_distance < min_safe_distance) {
-        int safest_dir = center_index - half_fov;
-        float max_distance = 0.0;
+      int safest_dir = center_index - half_fov;
+      float max_distance = 0.0;
 
-        for (size_t i=0; i<front_ranges.size(); i++) {
-            if (front_ranges[i] > max_distance && std::isfinite(front_ranges[i])){
-                max_distance = front_ranges[i];
-                safest_dir = i;
-            }
+      for (size_t i = 0; i < front_ranges.size(); i++) {
+        if (front_ranges[i] > max_distance && std::isfinite(front_ranges[i])) {
+          max_distance = front_ranges[i];
+          safest_dir = i;
         }
+      }
 
-        float safest_angle = angle_min_ + (safest_dir * angle_increment_);
+      direction_ = angle_min_ + (safest_dir * angle_increment_);
 
-        if (safest_angle > M_PI /2){
-            safest_angle = M_PI / 2;
-        } else if (safest_angle < -M_PI / 2) {
-            safest_angle = -M_PI / 2;
-        }
+      if (direction_ > M_PI / 2) {
+        direction_ = M_PI / 2;
+      } else if (direction_ < -M_PI / 2) {
+        direction_ = -M_PI / 2;
+      }
 
-        direction_ = safest_angle; 
-        RCLCPP_INFO(this->get_logger(), "Obstacle dtected! Turning to safest angle: %f", safest_angle);
-        msg.linear.x = 0.0;
-        msg.angular.z = safest_angle > 0 ? 0.5 : -0.5;
-    }   else {
-            msg.linear.x = 0.1;
-            msg.angular.z = 0.0;
-            RCLCPP_INFO(this->get_logger(), "Moving forward...");
-        } 
+      msg.linear.x = 0.0;
+      msg.angular.z = direction_/2;
+      RCLCPP_INFO(this->get_logger(),
+                  "Obstacle dtected! Turning to safest angle: %f",
+                  direction_);
+      msg.linear.x = 0.1;
+      msg.angular.z = direction_ / 2;
+    } else {
+      msg.linear.x = 0.1;
+      msg.angular.z = 0.0;
+      RCLCPP_INFO(this->get_logger(), "Moving forward...");
+    }
 
     cmd_vel_pub_->publish(msg);
   }
