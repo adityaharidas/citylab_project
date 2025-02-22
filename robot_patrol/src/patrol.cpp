@@ -62,10 +62,10 @@ private:
         direction_ = -M_PI / 2;
       }
 
-      msg.linear.x = 0.0;
-      msg.angular.z = direction_/2;
+      msg.linear.x = 0.1;
+      msg.angular.z = direction_ / 2;
       RCLCPP_INFO(this->get_logger(),
-                  "Obstacle dtected! Turning to safest angle: %f",
+                  "Obstacle detected! Turning to safest angle: %0.2f",
                   direction_);
       msg.linear.x = 0.1;
       msg.angular.z = direction_ / 2;
