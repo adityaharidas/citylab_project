@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <cmath>
 #include <geometry_msgs/msg/twist.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/laser_scan.hpp>
@@ -30,10 +31,10 @@ private:
     }
 
     auto msg = geometry_msgs::msg::Twist();
-    float min_safe_distance = 0.5;
+    float min_safe_distance = 0.35;
     int num_rays = laser_ranges_.size();
     int center_index = num_rays / 2;
-    int half_fov = center_index / 2;
+    int half_fov = num_rays / 4;
 
     std::vector<float> front_ranges(
         laser_ranges_.begin() + center_index - half_fov,
@@ -43,14 +44,33 @@ private:
         *std::min_element(front_ranges.begin(), front_ranges.end());
 
     if (min_distance < min_safe_distance) {
-      msg.linear.x = 0.2;
-      msg.angular.z = 0.0;
-      RCLCPP_INFO(this->get_logger(), "Obstacle detected! Turning...");
-    } else {
-      msg.linear.x = 0.2;
-      msg.angular.z = 0.0;
-      RCLCPP_INFO(this->get_logger(), "Moving forward...");
-    }
+        int safest_dir = center_index - half_fov;
+        float max_distance = 0.0;
+
+        for (size_t i=0; i<front_ranges.size(); i++) {
+            if (front_ranges[i] > max_distance && std::isfinite(front_ranges[i])){
+                max_distance = front_ranges[i];
+                safest_dir = i;
+            }
+        }
+
+        float safest_angle = angle_min_ + (safest_dir * angle_increment_);
+
+        if (safest_angle > M_PI /2){
+            safest_angle = M_PI / 2;
+        } else if (safest_angle < -M_PI / 2) {
+            safest_angle = -M_PI / 2;
+        }
+
+        direction_ = safest_angle; 
+        RCLCPP_INFO(this->get_logger(), "Obstacle dtected! Turning to safest angle: %f", safest_angle);
+        msg.linear.x = 0.0;
+        msg.angular.z = safest_angle > 0 ? 0.5 : -0.5;
+    }   else {
+            msg.linear.x = 0.1;
+            msg.angular.z = 0.0;
+            RCLCPP_INFO(this->get_logger(), "Moving forward...");
+        } 
 
     cmd_vel_pub_->publish(msg);
   }
@@ -60,6 +80,7 @@ private:
 
   std::vector<float> laser_ranges_;
   float angle_min_, angle_increment_;
+  float direction_;
 };
 
 int main(int argc, char **argv) {
