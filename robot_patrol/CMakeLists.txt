@@ -11,14 +11,19 @@ find_package(ament_lint_auto REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
   
-add_executable(patrol_node src/patrol.cpp)
-ament_target_dependencies(patrol_node rclcpp geometry_msgs sensor_msgs)
-install(TARGETS patrol_node DESTINATION lib/${PROJECT_NAME})
+add_executable(patrol src/patrol.cpp)
+ament_target_dependencies(patrol rclcpp geometry_msgs sensor_msgs nav_msgs tf2 tf2_geometry_msgs)
+install(TARGETS patrol DESTINATION lib/${PROJECT_NAME})
 install(DIRECTORY
   launch
-  DESTINATION share/${PROJECT_NAME}/
+  DESTINATION share/${PROJECT_NAME}/ OPTIONAL
 )
+
+ament_export_dependencies(rclcpp geometry_msgs sensor_msgs nav_msgs tf2 tf2_geometry_msgs)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
